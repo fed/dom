@@ -53,7 +53,7 @@ el.querySelectorAll(selector);
 const newDiv = document.createElement('div');
 ```
 
-## Adding created elements to the DOM
+## Adding elements to the DOM
 
 ```js
 // $(el).append(child);
@@ -73,73 +73,49 @@ parent.appendChild(el);
 el.insertAdjacentHTML('beforebegin', htmlString);
 ```
 
-## Styling an element
+## Traversing the DOM
 
 ```js
-// $(el).css('background-color', '#3cca5e');
-el.style.backgroundColor = '#3cca5e';
+// $(el).children();
+el.children // only HTMLElements
+el.childNodes // includes comments and text nodes
 
-// $(el).hide();
-el.style.display = 'none';
+// $(el).parent();
+el.parentNode
 
-// $(el).show();
-el.style.display = '';
+// $(el).prev();
+el.previousElementSibling // only HTMLElements
+el.previousSibling // includes comments and text nodes
+
+// $(el).next();
+el.nextElementSibling // only HTMLElements
+node.nextSibling // includes comments and text nodes
+
+// $.contains(el, child);
+el !== child && el.contains(child);
 ```
 
-To get the values of all CSS properties for an element you should use `window.getComputedStyle(element)` instead:
+## Removing and replacing nodes
 
 ```js
-// $(el).css(ruleName);
-getComputedStyle(el)[ruleName];
+// $(el).remove();
+el.parentNode.removeChild(el);
+
+// $(el).replaceWith(string);
+el.replaceChild(newNode, oldNode);
+
+// $(el).replaceWith(string); @TODO
+el.outerHTML = string;
 ```
 
-## Working with CSS classes
+## Cloning nodes
 
 ```js
-// $(el).addClass('foo');
-el.classList.add('foo');
-
-// $(el).removeClass('foo');
-el.classList.remove('foo');
-
-// $(el).toggleClass('foo');
-el.classList.toggle('foo');
-
-// $(el).hasClass('foo');
-el.classList.contains('foo');
+// $(el).clone();
+el.cloneNode(true);
 ```
 
-## Binding events
-
-```js
-// $(el).on(eventName, eventHandler);
-el.addEventListener(eventName, eventHandler);
-
-// $(el).off(eventName, eventHandler);
-el.removeEventListener(eventName, eventHandler);
-```
-
-If working with a collection of elements:
-
-```js
-// $('a').on(eventName, eventHandler);
-const links = document.querySelectorAll('a');
-[].forEach.call(links, function (link) {
-  link.addEventListener(eventName, eventHandler);
-});
-```
-
-## Event delegation
-
-```js
-// $('ul').on('click', 'li > a', eventHandler);
-const el = document.querySelector('ul');
-el.addEventListener('click', event => {
-  if (event.target.matches('li')) {
-    // event handling logic
-  }
-});
-```
+Pass in `true` to also clone child nodes.
 
 ## Checking if a node is empty
 
@@ -231,48 +207,40 @@ string = element.dataset.camelCaseValue;
 element.dataset.camelCaseValue = 'foo';
 ```
 
-## Traversing the DOM
+## Styling an element
 
 ```js
-// $(el).children();
-el.children // only HTMLElements
-el.childNodes // includes comments and text nodes
+// $(el).css('background-color', '#3cca5e');
+el.style.backgroundColor = '#3cca5e';
 
-// $(el).parent();
-el.parentNode
+// $(el).hide();
+el.style.display = 'none';
 
-// $(el).prev();
-el.previousElementSibling // only HTMLElements
-el.previousSibling // includes comments and text nodes
-
-// $(el).next();
-el.nextElementSibling // only HTMLElements
-node.nextSibling // includes comments and text nodes
-
-// $.contains(el, child);
-el !== child && el.contains(child);
+// $(el).show();
+el.style.display = '';
 ```
 
-## Cloning nodes
+To get the values of all CSS properties for an element you should use `window.getComputedStyle(element)` instead:
 
 ```js
-// $(el).clone();
-el.cloneNode(true);
+// $(el).css(ruleName);
+getComputedStyle(el)[ruleName];
 ```
 
-Pass in `true` to also clone child nodes.
-
-## Removing and replacing nodes
+## Working with CSS classes
 
 ```js
-// $(el).remove();
-el.parentNode.removeChild(el);
+// $(el).addClass('foo');
+el.classList.add('foo');
 
-// $(el).replaceWith(string);
-el.replaceChild(newNode, oldNode);
+// $(el).removeClass('foo');
+el.classList.remove('foo');
 
-// $(el).replaceWith(string); @TODO
-el.outerHTML = string;
+// $(el).toggleClass('foo');
+el.classList.toggle('foo');
+
+// $(el).hasClass('foo');
+el.classList.contains('foo');
 ```
 
 ## Getting element position
@@ -296,20 +264,36 @@ const rect = el.getBoundingClientRect();
 }
 ```
 
-## Random utils
+## Binding events
 
 ```js
-// $.proxy(fn, context);
-fn.bind(context);
+// $(el).on(eventName, eventHandler);
+el.addEventListener(eventName, eventHandler);
 
-// $.parseJSON(string);
-JSON.parse(string);
+// $(el).off(eventName, eventHandler);
+el.removeEventListener(eventName, eventHandler);
+```
 
-// $.trim(string);
-string.trim();
+If working with a collection of elements:
 
-// $.type(obj);
-Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
+```js
+// $('a').on(eventName, eventHandler);
+const links = document.querySelectorAll('a');
+[].forEach.call(links, function (link) {
+  link.addEventListener(eventName, eventHandler);
+});
+```
+
+## Event delegation
+
+```js
+// $('ul').on('click', 'li > a', eventHandler);
+const el = document.querySelector('ul');
+el.addEventListener('click', event => {
+  if (event.target.matches('li')) {
+    // event handling logic
+  }
+});
 ```
 
 ## Animations
@@ -348,6 +332,22 @@ el.classList.remove('hide');
 .hide {
   opacity: 0;
 }
+```
+
+## Random utilities
+
+```js
+// $.proxy(fn, context);
+fn.bind(context);
+
+// $.parseJSON(string);
+JSON.parse(string);
+
+// $.trim(string);
+string.trim();
+
+// $.type(obj);
+Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 ```
 
 # Alternative libraries
