@@ -83,6 +83,11 @@ el.childNodes // includes comments and text nodes
 // $(el).parent();
 el.parentNode
 
+// $(el).siblings();
+[].filter.call(el.parentNode.children, function (child) {
+  return child !== el;
+});
+
 // $(el).prev();
 el.previousElementSibling // only HTMLElements
 el.previousSibling // includes comments and text nodes
