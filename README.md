@@ -243,7 +243,7 @@ el.classList.toggle('foo');
 el.classList.contains('foo');
 ```
 
-## Getting element position
+## Getting the position of an element
 
 ```js
 // $(el).outerHeight();
@@ -333,6 +333,36 @@ el.classList.remove('hide');
   opacity: 0;
 }
 ```
+
+## Looping over and filtering through collections of DOM elements
+
+Note this is not necessary if you are using `querySelector(All)`.
+
+```js
+// $(selector).each(function (index, element) { ... });
+const elements = document.getElementsByClassName(selector);
+
+[].forEach.call(elements, function (element, index, arr) { ... });
+
+//or
+Array.prototype.forEach.call(elements, function (element, index, array) { ... });
+
+// or
+Array.from(elements).forEach((element, index, arr) => { ... }); // ES6 ⚠️
+```
+
+Same concept applies to filtering:
+
+```js
+// $(selector).filter(":even");
+const elements = document.getElementsByClassName(selector);
+
+[].filter.call(elements, function (element, index, arr) {
+  return index % 2 === 0;
+});
+```
+
+Recall that `:even` and `:odd` use 0-based indexing.
 
 ## Random utilities
 
