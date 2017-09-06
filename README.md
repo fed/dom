@@ -344,7 +344,7 @@ el.classList.remove('hide');
 }
 ```
 
-## Alternative libraries
+# Alternative libraries
 
 * AJAX: [Axios](https://github.com/mzabriskie/axios), [Superagent](https://github.com/visionmedia/superagent)
 * Animations: [Animate.css](https://github.com/daneden/animate.css), [Move.js](https://github.com/visionmedia/move.js)
