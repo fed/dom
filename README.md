@@ -306,6 +306,44 @@ string.trim();
 Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 ```
 
+## Animations
+
+```js
+// $(el).fadeIn();
+function fadeIn(el) {
+  el.style.opacity = 0;
+
+  var last = +new Date();
+  var tick = function () {
+    el.style.opacity = +el.style.opacity + (new Date() - last) / 400;
+    last = +new Date();
+
+    if (+el.style.opacity < 1) {
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+    }
+  };
+
+  tick();
+}
+```
+
+Or, if you are only supporting IE10+:
+
+```js
+el.classList.add('show');
+el.classList.remove('hide');
+```
+
+```css
+.show {
+  transition: opacity 400ms;
+}
+
+.hide {
+  opacity: 0;
+}
+```
+
 # Credits and further resources
 
 * http://youmightnotneedjquery.com/
