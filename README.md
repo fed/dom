@@ -124,7 +124,7 @@ If working with a collection of elements:
 ```js
 // $('a').on(eventName, eventHandler);
 const links = document.querySelectorAll('a');
-Array.from(links).forEach((link) => {
+[].forEach.call(links, function (link) {
   link.addEventListener(eventName, eventHandler);
 });
 ```
@@ -132,7 +132,13 @@ Array.from(links).forEach((link) => {
 ## Event delegation
 
 ```js
-// $('ul').on('click', 'li', eventHandler)
+// $('ul').on('click', 'li > a', eventHandler);
+const el = document.querySelector('ul');
+el.addEventListener('click', event => {
+  if (event.target.matches('li')) {
+    // event handling logic
+  }
+});
 ```
 
 ## Checking if a node is empty
