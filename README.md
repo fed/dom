@@ -180,9 +180,15 @@ el.textContent
 el.textContent = string;
 ```
 
-## Getting and setting inner HTML
+## Getting and setting outer/inner HTML
 
 ```js
+// $('<div>').append($(el).clone()).html();
+el.outerHTML;
+
+// $(el).replaceWith(string);
+el.outerHTML = string;
+
 // $(el).html();
 el.innerHTML
 
