@@ -79,6 +79,7 @@ el.insertAdjacentHTML('beforebegin', htmlString);
 // $(el).children();
 el.children // only HTMLElements
 el.childNodes // includes comments and text nodes
+// ⚠️ Heads up: you can't `forEach` through `children` unless you turn it into an array first.
 
 // $(el).parent();
 el.parentNode
