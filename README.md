@@ -413,3 +413,4 @@ Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCa
 
 * http://youmightnotneedjquery.com/
 * https://css-tricks.com/now-ever-might-not-need-jquery/
+* https://plainjs.com/javascript/
