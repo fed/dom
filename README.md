@@ -84,6 +84,9 @@ el.childNodes // includes comments and text nodes
 // $(el).parent();
 el.parentNode
 
+// $(el).closest(selector);
+el.closest(selector);
+
 // $(el).first();
 el.firstElementChild; // only HTMLElements
 el.firstChild; // includes comments and text nodes
