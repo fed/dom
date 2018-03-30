@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', callback);
 
 // $(window).load(callback);
 window.addEventListener('load', callback);
+window.onload = callback;
 ```
 
 ## Selectors
@@ -44,6 +45,17 @@ Since all of the selectors (except `getElementById`) support querying a node oth
 ```js
 // $(el).find(selector);
 el.querySelectorAll(selector);
+```
+
+## jQuery-like selector
+
+```js
+function $$(selector) {
+  var nodes = document.querySelectorAll(selector);
+  return Array.prototype.slice.call(nodes);
+}
+
+$$('selector');
 ```
 
 ## Creating elements
@@ -115,6 +127,22 @@ node.nextSibling // includes comments and text nodes
 
 // $.contains(el, child);
 el !== child && el.contains(child);
+```
+
+## Traversing a node list
+
+```js
+var nodes = document.querySelectorAll('.class-name');
+
+// 1.
+var elements = Array.prototype.slice.call(nodes);
+elements.forEach(noop);
+
+// 2. (clean, but creates a new array)
+[].forEach.call(nodes, noop);
+
+// 3.
+Array.prototype.forEach.call(nodes, noop);
 ```
 
 ## Closest
@@ -268,6 +296,15 @@ const oldId = el.id;
 el.id = 'foo';
 ```
 
+Some other properties we can access directly:
+
+```js
+node.href;
+node.checked;
+node.disabled;
+node.selected;
+```
+
 For data attributes we can either use `el.getAttribute('data-something')` or resort to the `dataset` object:
 
 ```js
@@ -365,6 +402,15 @@ el.addEventListener('click', event => {
     // event handling logic
   }
 });
+```
+
+## Mocking events
+
+```js
+var anchor = document.getElementById('my-anchor');
+var event = new Event('click');
+
+anchor.dispatchEvent(event);
 ```
 
 ## Animations
