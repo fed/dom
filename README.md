@@ -95,6 +95,11 @@ el.firstChild; // includes comments and text nodes
 el.lastElementChild; // only HTMLElements
 el.lastChild; // includes comments and text nodes
 
+// First and last alternative
+var nodeList = document.querySelectorAll('.some-class');
+var first = nodeList[0];
+var last = nodeList[nodeList.length - 1];
+
 // $(el).siblings();
 [].filter.call(el.parentNode.children, function (child) {
   return child !== el;
