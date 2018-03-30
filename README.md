@@ -220,6 +220,13 @@ el.textContent
 el.textContent = string;
 ```
 
+There's also `innerText` and `outerText`:
+
+* `innerText` was non-standard, while `textContent` was standardised earlier.
+* `innerText` returns the visible text contained in a node, while `textContent` returns the full text. For example, on the following element: `<span>Hello <span style="display: none;">World</span></span>`, `innerText` will return 'Hello', while `textContent` will return 'Hello World'. As a result, `innerText` is much more performance-heavy: it requires layout information to return the result.
+
+Here is the official warning for `innerText`: *This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.*
+
 ## Getting and setting outer/inner HTML
 
 ```js
