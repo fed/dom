@@ -112,6 +112,39 @@ node.nextSibling // includes comments and text nodes
 el !== child && el.contains(child);
 ```
 
+## Closest
+
+Find the closest element that matches the target selector:
+
+```js
+var node = document.getElementById('my-id');
+var isFound = false;
+
+while (node instanceof Element) {
+  if (node.matches('.target-class')) {
+    isFound = true;
+    break;
+  }
+  node = node.parentNode;
+}
+```
+
+`Element.prototype.closest` Polyfill:
+
+```js
+if (Element && !Element.prototype.closest) {
+  Element.prototype.closest = function (selector) {
+    var el = this;
+    while (el instanceof Element) {
+      if (el.matches(selector)) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+  }
+}
+```
+
 ## Removing and replacing nodes
 
 ```js
