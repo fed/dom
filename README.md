@@ -420,6 +420,15 @@ const elements = document.getElementsByClassName(selector);
 
 Recall that `:even` and `:odd` use 0-based indexing.
 
+Another filtering example:
+
+```js
+var nodeList = document.getElementsByClassName('my-class');
+var filtered = Array.prototype.filter.call(nodeList, function (item) {
+  return item.innerText.indexOf('Item') !== -1;
+});
+```
+
 ## Random utilities
 
 ```js
