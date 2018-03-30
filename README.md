@@ -195,9 +195,12 @@ el === otherEl
 
 // $(el).is('.my-class');
 el.matches('.my-class');
+
+// $(el).is('a');
+el.matches('a');
 ```
 
-Note that many browsers implement [`Element.matches`](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) prefixed, under the non-standard name `matchesSelector`. We can play safe by using something along the lines of:
+Note that `matches` needs to be polyfilled in older browsers. Also, many browsers implement [`Element.matches`](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) prefixed, under the non-standard name `matchesSelector`. We can play safe by using something along the lines of:
 
 ```js
 function matches(el, selector) {
