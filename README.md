@@ -382,7 +382,7 @@ el.addEventListener(eventName, eventHandler);
 el.removeEventListener(eventName, eventHandler);
 ```
 
-If working with a collection of elements:
+If working with a collection of elements, you can bind an event handler to each one of them by using a loop:
 
 ```js
 // $('a').on(eventName, eventHandler);
@@ -394,6 +394,8 @@ const links = document.querySelectorAll('a');
 
 ## Event delegation
 
+Can add to higher element and use 'matches' to see if specific child was clicked (similar to jQuery's `.on`):
+
 ```js
 // $('ul').on('click', 'li > a', eventHandler);
 const el = document.querySelector('ul');
@@ -402,6 +404,32 @@ el.addEventListener('click', event => {
     // event handling logic
   }
 });
+```
+
+## The event object
+
+```js
+var node = document.getElementById('my-node');
+var onClick = function (event) {
+  // this = element
+
+  // can filter by target = event delegation
+  if (!event.target.matches('.tab-header')) {
+    return;
+  }
+
+  // stop the default browser behaviour
+  event.preventDefault();
+
+  // stop the event from bubbling up the dom
+  event.stopPropagation();
+
+  // other listeners on this node will not fire
+  event.stopImmediatePropagation();
+};
+
+node.addEventListener('click', onClick);
+node.removeEventListener('click', onClick);
 ```
 
 ## Mocking events
