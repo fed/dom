@@ -403,6 +403,36 @@ string.trim();
 Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 ```
 
+## XMLHttpRequest (XHR)
+
+Despite its name, `XMLHttpRequest` can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).
+
+**Getting data from the server:**
+
+```js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/url', true);
+xhr.onload = function () {
+  if (this.status === 200) {
+    console.log('success!');
+  } else {
+    console.log('failed', this.status);
+  }
+};
+
+xhr.send();
+```
+
+**Posting data back to the server:**
+
+```js
+var xhrPost = new XMLHttpRequest();
+xhrPost.open('POST', '/url/post', true);
+xhrPost.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+xhrPost.onload = function () {};
+xhrPost.send();
+```
+
 # Alternative libraries
 
 * AJAX: [Axios](https://github.com/mzabriskie/axios), [Superagent](https://github.com/visionmedia/superagent)
