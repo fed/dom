@@ -534,6 +534,33 @@ string.trim();
 Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 ```
 
+## Adding multiple `window.{onload, onerror}` events
+
+```js
+(function () {
+  function addWindowEvent(event, fn) {
+    var old = window[event];
+    if (typeof old !== 'function') {
+      window[event] = fn;
+      return;
+    }
+
+    window[event] = function () {
+      old.apply(window, arguments);
+      fn.apply(window, arguments);
+    }
+  }
+
+  window.addOnLoad = function (fn) {
+    addWindowEvent('onload', fn)
+  }
+
+  window.addOnError = function (fn) {
+    addWindowEvent('onerror', fn)
+  }
+})();
+```
+
 ## XMLHttpRequest (XHR)
 
 Despite its name, `XMLHttpRequest` can be used to retrieve any type of data, not just XML, and it supports protocols other than HTTP (including file and ftp).
