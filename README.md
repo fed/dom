@@ -63,6 +63,13 @@ $$('selector');
 ```js
 // $('<div />');
 const newDiv = document.createElement('div');
+
+// There is no equivalent in jQuery for createTextNode.
+// You can always use the DOM method, or write a jQuery wrapper around it.
+// The closest thing you may be able to find is when creating new elements,
+// you can specify the text part separately.
+// $('<div>', { text: 'hello world' });
+const newTextNode = document.createTextNode('hello world');
 ```
 
 ## Adding elements to the DOM
@@ -180,12 +187,12 @@ if (Element && !Element.prototype.closest) {
 
 ## Removing and replacing nodes
 
+Heads up: [Element.remove()](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove) needs to be polyfilled on IE.
+
 ```js
 // $(el).remove();
 el.parentNode.removeChild(el);
-
-// $(el).replaceWith(string);
-el.replaceChild(newNode, oldNode);
+el.remove(); ⚠️
 
 // Remove all GIF images from the page
 [].forEach.call(document.querySelectorAll('img'), function (img) {
@@ -194,7 +201,10 @@ el.replaceChild(newNode, oldNode);
   }
 });
 
-// $(el).replaceWith(string); @TODO
+// $(el).replaceWith($('.first'));
+el.parentNode.replaceChild(newNode, el);
+
+// $(el).replaceWith(string);
 el.outerHTML = string;
 ```
 
