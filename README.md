@@ -187,6 +187,13 @@ el.parentNode.removeChild(el);
 // $(el).replaceWith(string);
 el.replaceChild(newNode, oldNode);
 
+// Remove all GIF images from the page
+[].forEach.call(document.querySelectorAll('img'), function (img) {
+  if (/\.gif/i.test(img.src)) {
+    img.remove();
+  }
+});
+
 // $(el).replaceWith(string); @TODO
 el.outerHTML = string;
 ```
