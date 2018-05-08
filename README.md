@@ -75,21 +75,22 @@ const newTextNode = document.createTextNode('hello world');
 ## Adding elements to the DOM
 
 ```js
-// $(el).append(child);
-el.appendChild(child);
+// $(parent).append(el);
+parent.appendChild(el);
+
+// $(parent).prepend(el);
+parent.prepend(el);
+// ⚠️ Heads up: needs to be polyfilled on IE and Edge.
 
 // $(parent).prepend(el); 
 parent.insertBefore(el, parent.firstChild);
 el.insertBefore(node) // @TODO
 
-// $(el).after(htmlString);
-el.insertAdjacentHTML('afterend', htmlString);
-
-// $(parent).append(el);
-parent.appendChild(el);
-
 // $(el).before(htmlString);
 el.insertAdjacentHTML('beforebegin', htmlString);
+
+// $(el).after(htmlString);
+el.insertAdjacentHTML('afterend', htmlString);
 ```
 
 ## Traversing the DOM
