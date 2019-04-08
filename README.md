@@ -620,3 +620,4 @@ xhrPost.send();
 * http://youmightnotneedjquery.com/
 * https://css-tricks.com/now-ever-might-not-need-jquery/
 * https://plainjs.com/javascript/
+* https://github.com/nefe/You-Dont-Need-jQuery
