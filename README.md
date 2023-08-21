@@ -2,6 +2,10 @@
 
 ![DOM Traversal and Manipulation](https://i.imgur.com/t5rKLJy.jpg)
 
+## ⚠️ Heads up!
+
+I've moved this article/cheatsheet to my blog, to check the latest version [click here](https://fedknu.com/blog/dom-traversal-manipulation/).
+
 ## DOM ready and window load
 
 ```js
